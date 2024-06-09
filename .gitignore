@@ -132,3 +132,4 @@ Results_pred_symlg
 
 *.ckpt
 lightning_logs/
+data/

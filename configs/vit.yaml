@@ -1,3 +1,4 @@
+
 trainer:
   checkpoint_callback: true
   callbacks:
@@ -9,29 +10,24 @@ trainer:
         save_top_k: 1
         monitor: val_acc
         mode: max
-        filename: 'DenseNet121-{epoch}-{step}-{val_acc:.4f}'
-  gpus: 0, 1, 2, 3
+        filename: 'VitB16-{epoch}-{step}-{val_acc:.4f}'
+  gpus: 0, 1
   accelerator: ddp
   check_val_every_n_epoch: 1
-  max_epochs: 200
+  max_epochs: 10
 
 model:
-  model_name: 'densenet121'
+  model_name: 'vit_base_patch16_224'
   # training
-  optimizer_name: 'sgd'
+  optimizer_name: 'adam'
   scheduler_name: 'warmup_cosine'
-  learning_rate: 0.1
-  momentum: 0.9
-  weight_decay: 5e-4
+  learning_rate: 5e-5
+  weight_decay: 0
   smoothing: 0.1
-  step_size: 60
-  pretrained: False
-  xavier_init: False
-  warmup_steps: 5
-  use_mixup: True
+  pretrained: True
 data:
   data_adr: '../data'
-  train_batch_size: 128
-  eval_batch_size: 128
+  train_batch_size: 16
+  eval_batch_size: 16
   num_workers: 4
-  img_size: 128
+  img_size: 224

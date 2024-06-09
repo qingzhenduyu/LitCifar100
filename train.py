@@ -1,8 +1,8 @@
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning import Trainer
 import torch
-from models.lit_densenet import CIFAR100Model
-from datasets.dataset import CIFAR100Datamodule
+from models.lit_model import CIFAR100Model
+from datamodule.dataset import CIFAR100Datamodule
 
 from pytorch_lightning.plugins.training_type.ddp import DDPPlugin
 from pytorch_lightning.utilities.cli import LightningCLI

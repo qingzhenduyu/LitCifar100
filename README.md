@@ -1,6 +1,6 @@
 <div align="center">    
  
-# ICAL: Implicit Character-Aided Learning for Enhanced Handwritten Mathematical Expression Recognition 
+# CIFAR100: Train models with pytorch lightning and timm 
 </div>
 
 
@@ -26,3 +26,14 @@ For single gpu user, you may change the `densenet.yaml` file to
 ```yaml
 gpus: 1
 ```
+
+
+
+## Implementation Details
+- CIFAR100
+
+|   epoch   | learning rate |  weight decay | Optimizer | Momentum |  Nesterov |
+|:---------:|:-------------:|:-------------:|:---------:|:--------:|:---------:|
+|   0 ~ 60  |      0.1      |     5e-4    |    SGD    |    0.9   |   False   |
+|  61 ~ 120 |      0.01     |     5e-4     |    SGD    |    0.9   |   False   |
+| 121 ~ 180 |      0.001    |     5e-4     |    SGD    |    0.9   |   False   |
