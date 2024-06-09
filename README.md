@@ -37,8 +37,6 @@ python -u train.py --config config/resnetxxx.yaml
 ```
 
 
-
-
 ## Experimental Results 
 
 ### DenseNet121
@@ -52,7 +50,8 @@ python -u train.py --config config/resnetxxx.yaml
 |  5  | DenseNet121 | 78.06 |     Auto     |        √        |    64    |  Official Init   |  Warmup+Cosine   |
 |  6  | DenseNet121 | 78.57 | Auto + mixup |        √        |    64    |  Official Init   |  Warmup+Cosine   |
 |  7  | DenseNet121 | 81.68 |     Auto     |        √        |   128    |  Official Init   |  Warmup+Cosine   |
-|  8  | DenseNet121 |       | Auto + mixup |        √        |   128    |  Official Init   |  Warmup+Cosine   |
+|  8  | DenseNet121 | 82.03 | Auto + mixup |        √        |   128    |  Official Init   |  Warmup+Cosine   |
+|  9  | DenseNet121-250epochs | 82.42 |     Auto     |        √        |   128    |  Official Init   |  Warmup+Cosine   |
 
 ### ResNet
 |    模型    | Acc@1 | Augmentation | Label Smoothing | Img Size | Model<br>Initial | Scheduler |
