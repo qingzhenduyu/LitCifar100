@@ -13,6 +13,7 @@ from utils.utils import (CombinedScheduler, LinearWarmupScheduler,
 
 import numpy as np
 
+
 class CIFAR100Model(pl.LightningModule):
     def __init__(
         self,
@@ -48,19 +49,16 @@ class CIFAR100Model(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
         x, y = batch
-        
+
         if self.use_mixup:
             x, y_a, y_b, lam = mixup_data(x, y, alpha=0.2)
             y_hat = self(x)
-            loss = lam * self.criterion(y_hat, y_a) + (1 - lam) * self.criterion(y_hat, y_b)
-            # if np.random.rand() > 0.5:
-            # else:
-            #     x, y_a, y_b, lam = cutmix_data(x, y)
-            #     y_hat = self(x)
-            #     loss = lam * self.criterion(y_hat, y_a) + (1 - lam) * self.criterion(y_hat, y_b)
+            loss = lam * self.criterion(y_hat, y_a) + \
+                (1 - lam) * self.criterion(y_hat, y_b)
         else:
             y_hat = self(x)
             loss = self.criterion(y_hat, y)
+
         self.train_accuracy(y_hat, y)
         self.log('train_loss', loss, prog_bar=True)
         self.log('train_acc', self.train_accuracy, prog_bar=True)
@@ -102,7 +100,6 @@ class CIFAR100Model(pl.LightningModule):
             warmup_scheduler = LinearWarmupScheduler(
                 optimizer, warmup_steps=5, final_lr=self.hparams.learning_rate)
             scheduler = CombinedScheduler(warmup_scheduler, init_scheduler)
-
         if self.hparams.scheduler_name == 'warmup_cosine':
             # Define a lambda function for the learning rate schedule
             def lr_lambda(current_step):

@@ -13,7 +13,7 @@ trainer:
   gpus: 0, 1, 2, 3
   accelerator: ddp
   check_val_every_n_epoch: 1
-  max_epochs: 200
+  max_epochs: 250
 
 model:
   model_name: 'densenet121'
