@@ -13,22 +13,26 @@ trainer:
   gpus: 0, 1, 2, 3
   accelerator: ddp
   check_val_every_n_epoch: 1
-  max_epochs: 200
+  max_epochs: 300
 
 model:
   model_name: 'resnet50'
   # training
   optimizer_name: 'sgd'
-  scheduler_name: 'step'
+  scheduler_name: 'warmup_cosine'
   learning_rate: 0.1
   momentum: 0.9
   weight_decay: 5e-4
   smoothing: 0.1
   step_size: 60
   pretrained: False
+  xavier_init: False
+  warmup_steps: 5
+  use_mixup: True
 data:
   data_adr: '../data'
   train_batch_size: 128
   eval_batch_size: 128
   num_workers: 4
-  img_size: 64
+  img_size: 128
+
